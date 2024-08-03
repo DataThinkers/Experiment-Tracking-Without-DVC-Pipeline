@@ -1,6 +1,9 @@
 import pandas as pd
 import numpy as np
 from dvclive import Live
+import yaml
+
+n_estimators = yaml.safe_load(open("D:\exp-tracking-dvc\dvclive\params.yaml"))["n_estimators"]
 
 data = pd.read_csv("D:\exp-tracking-dvc\data\water_potability.csv")
 
@@ -24,7 +27,7 @@ import pickle
 X_train = train_processed_data.iloc[:,0:-1].values
 y_train = train_processed_data.iloc[:,-1].values
 
-n_estimators = 500
+#n_estimators = 500
 
 clf = RandomForestClassifier(n_estimators=n_estimators)
 clf.fit(X_train,y_train)
